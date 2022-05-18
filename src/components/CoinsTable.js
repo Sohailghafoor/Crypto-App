@@ -132,9 +132,10 @@ export default function CoinsTable() {
               </TableHead>
 
               <TableBody>
-                <TableRow 
+                 <TableRow 
                 onClick = {() => history.push(`/coins/${twoLocal.id}`)}
                 className={classes.row}>
+                  
                   <TableCell
                           component="th"
                           scope="row"
@@ -144,7 +145,7 @@ export default function CoinsTable() {
                           }}
                         >
                           <img
-                            src={twoLocal?.image}
+                            src={"https://assets.coingecko.com/coins/images/16062/large/2local_symbol-512px_margin.png?1623049696"}
                             alt={twoLocal.name}
                             height="50"
                             style={{ marginBottom: 10 }}
@@ -164,10 +165,25 @@ export default function CoinsTable() {
                               {twoLocal.name}
                             </span>
                           </div>
+                          
                         </TableCell>
-                  <TableCell>{twoLocal.name}</TableCell>
-                  <TableCell>{twoLocal.symbol}</TableCell>
-                  <TableCell>{twoLocal.last_updated}</TableCell>
+                        <TableCell align="right">
+                          {symbol}{" "}
+                          {twoLocal.current_price}
+                        </TableCell>
+                        <TableCell
+                          align="right"
+                          style={{
+                            
+                            fontWeight: 500,
+                          }}
+                        ></TableCell>
+                          <TableCell align="right">
+                          {symbol}{" "}
+                        
+                        </TableCell>
+                        
+        
                 </TableRow>
                 {handleSearch()
                   .slice((page - 1) * 10, (page - 1) * 10 + 10)
