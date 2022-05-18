@@ -83,6 +83,16 @@ export default function CoinsTable() {
     );
   };
 
+  const [twoLocal, setTwoLocal] = useState([]);
+  useEffect(() => {
+    axios.get("https://api.coingecko.com/api/v3/coins/2local-2").then((res) => {
+      const data = res.data;
+      setTwoLocal(data);
+    });
+  }, []);
+
+  console.log("Two local", twoLocal)
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>
@@ -122,13 +132,50 @@ export default function CoinsTable() {
               </TableHead>
 
               <TableBody>
+                <TableRow 
+                onClick = {() => history.push(`/coins/${twoLocal.id}`)}
+                className={classes.row}>
+                  <TableCell
+                          component="th"
+                          scope="row"
+                          style={{
+                            display: "flex",
+                            gap: 15,
+                          }}
+                        >
+                          <img
+                            src={twoLocal?.image}
+                            alt={twoLocal.name}
+                            height="50"
+                            style={{ marginBottom: 10 }}
+                          />
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <span
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: 22,
+                              }}
+                            >
+                              {twoLocal.symbol}
+                            </span>
+                            <span style={{ color: "darkgrey" }}>
+                              {twoLocal.name}
+                            </span>
+                          </div>
+                        </TableCell>
+                  <TableCell>{twoLocal.name}</TableCell>
+                  <TableCell>{twoLocal.symbol}</TableCell>
+                  <TableCell>{twoLocal.last_updated}</TableCell>
+                </TableRow>
                 {handleSearch()
                   .slice((page - 1) * 10, (page - 1) * 10 + 10)
                   .map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
                       <TableRow
-                        onClick={() => history.push(`/coins/${row.id}`)}
+                      onClick={() => history.push(`/coins/${row.id}`)}
                         className={classes.row}
                         key={row.name}
                       >
@@ -181,7 +228,7 @@ export default function CoinsTable() {
                           {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
                           )}
-                          M
+                          
                         </TableCell>
                       </TableRow>
                     );
