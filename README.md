@@ -81,11 +81,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-{ for 2local
+<<<<<<< HEAD
+ for 2local
 npx create-react-app 2local
 npm install @mui/material @emotion/react @emotion/styled
 npm i react-router-dom
 npm install axios
 npm install coingecko-api
 2local api (https://api.coingecko.com/api/v3/coins/2local-2)
-}
+
+=======
+>>>>>>> 97db51df4c46133cbeb2322574c182179dbd929f
